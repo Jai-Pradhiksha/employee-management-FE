@@ -34,6 +34,14 @@ const AddNewEmployeeComponent = () => {
   const formSubmitHandler = (event) => {
     event.preventDefault();
 
+    //const currentDate = new Date();
+    const enteredDate = new Date(employeeInfo.dateOfBirth);
+
+    if (enteredDate.getFullYear() >= 2022) {
+      alert('Error: Date of Birth must be before 2022');
+      return;
+    }
+
     axios
       .post(`http://localhost:8080/api/v1/employee/`,employeeInfo)
       .then(response => {
